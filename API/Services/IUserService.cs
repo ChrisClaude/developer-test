@@ -1,4 +1,4 @@
-﻿interface IUserService
+﻿public interface IUserService
 {
     Task<IEnumerable<UserDto>> GetUsersAsync();
 }
