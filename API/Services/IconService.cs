@@ -13,7 +13,7 @@ public class IconService : IIconService
         var iconPath = Path.Combine(iconsPath, $"{name}.png");
 
         if (!File.Exists(iconPath))
-            return null;
+            return await File.ReadAllBytesAsync(Path.Combine(iconsPath, "unknown.png"));
 
         return await File.ReadAllBytesAsync(iconPath);
     }
