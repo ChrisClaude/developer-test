@@ -10,11 +10,12 @@ public class UserService : IUserService
         var userDtos = new List<UserDto>();
         var usersPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Users");
         var files = Directory.GetFiles(usersPath, "*.json");
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         foreach (var file in files)
         {
             using var stream = File.OpenRead(file);
-            var user = await JsonSerializer.DeserializeAsync<User>(stream);
+            var user = await JsonSerializer.DeserializeAsync<User>(stream, options);
 
             if (user is null)
                 continue;
